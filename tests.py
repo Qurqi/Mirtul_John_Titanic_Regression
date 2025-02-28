@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 class ModelEvaluation:
@@ -19,8 +20,8 @@ class ModelEvaluation:
         Generates predictions using the trained model.
         """
         pass  # Implement model predictions
-        predictions = self.model(self.X_test)
-        print("Where my crystal ball?")
+        predictions = self.model(tf.convert_to_tensor(self.X_test)).numpy()          
+        print("Where is my crystal ball?")
         print("...")
         print("...")
         print("...")
@@ -33,21 +34,23 @@ class ModelEvaluation:
         Computes Mean Squared Error (MSE).
         """
         pass  # Implement MSE calculation
-        mse = mean_squared_error(self.y_test, self.predict())
+        mse = mean_squared_error(np.array(self.y_test), self.predict())
         print("Evaluating MSE...")
         print("You failed.")
         print("...")
         print("Kidding :)")
         print(f'Mean Squared Error: {mse}')
         return mse
+
     def evaluate_mae(self):
         """
         Computes Mean Absolute Error (MAE).
         """
         pass  # Implement MAE calculation
-        mae = mean_absolute_error(self.y_test, self.predict())
-        print("Calculate MAE? Absoultely!")
+        mae = mean_absolute_error(np.array(self.y_test), self.predict())
+        print("Calculate MAE? Absolutely!")
         print("Evaluating MAE...")
         print(f"Mean Absolute Error: {mae}")
         return mae
+
         
